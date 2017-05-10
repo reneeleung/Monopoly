@@ -3,9 +3,9 @@ Last modified: May 10, 2017
 
 Credits to:
 
-Mr. Cadawas for implementing SuperSocketMaster
+Mr. Cadawas for implementing SuperSocketMaster.java
 
-Amy Ji for coding the GUI of the game
+Amy Ji for implementing JGraphics.java and creating image files of the game
 
 ## Get Started
 - Execute main.jar on the terminal / other text editors
