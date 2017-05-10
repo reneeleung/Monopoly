@@ -47,4 +47,5 @@ There are three types of property:
 1. Sites
 2. Public Facilities
 3. Utilities
+
 If you land on an unowned property, you have the first choice to buy it. If you decide to buy pay the banked the price printed on that space. You will receive that property’s Title Deed card as proof of ownership.
