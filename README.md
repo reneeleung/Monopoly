@@ -7,6 +7,14 @@ Mr. Cadawas for implementing SuperSocketMaster
 
 Amy Ji for coding the GUI of the game
 
+## Get Started
+- Execute main.jar on the terminal / other text editors
+- To create a new game, first set up server's account by inputting name and port number
+- Get server's IP Address from the program system
+- Use the obtained IP Address and port number to set up client's account
+- Select character and connect to the game
+- Enjoy!
+
 ## Aim of the Game
 To be the only player left in the game after everyone has gone bankrupt.
 
