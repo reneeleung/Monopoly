@@ -8,7 +8,7 @@ Mr. Cadawas for implementing SuperSocketMaster.java
 Amy Ji for implementing JGraphics.java and creating image files of the game
 
 ## Get Started
-- Execute main.jar on the terminal / other text editors
+- Execute main.jar on the terminal / other text editors or run GUI.class (i.e. java GUI)
 - To create a new game, first set up server's account by inputting name and port number
 - Get server's IP Address from the program system
 - Use the obtained IP Address and port number to set up client's account
