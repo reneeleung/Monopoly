@@ -9,20 +9,20 @@ import java.awt.Font.*;
 public class bankrupt extends JPanel{
   BufferedImage bcg = null;
 
-  // methods 
+  // methods
   public void paintComponent(Graphics g){
     Graphics2D graphic = (Graphics2D)g;
     graphic.drawImage(bcg,0,0,null);
-    
+
   }
-  
-  // constructor 
+
+  // constructor
   public bankrupt(){
     super();
     try{
-      bcg = ImageIO.read(getClass().getResource("bankrupt.png"));  
-      
-      
+      bcg = ImageIO.read(getClass().getResource("images/bankrupt.png"));  
+
+
     }
     catch(IOException e){
     }

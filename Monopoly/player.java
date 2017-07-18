@@ -16,7 +16,7 @@ public class player{
   int intPlayer;
   /**
    * Name of the player
-   */ 
+   */
   String strName;
   /**
    * Number of marks remaining for the player
@@ -109,10 +109,10 @@ public class player{
       ssm.sendText("CHT,"+intPlayer+",bought a hotel at "+strLocation);
       this.sendPlayerInfo(ssm);
     }
-    
+
   }
   /**
-   * Sells a property, utility, or public facility. 
+   * Sells a property, utility, or public facility.
    * Owner no longer owns the property and the Title Deed card
    */
   public void sell(SuperSocketMaster ssm, int intLocation, int intMarks){
@@ -151,7 +151,7 @@ public class player{
     ssm.sendText("MOV,"+intPlayer+","+intCurrentLocation+","+intNextLocation);
     ssm.sendText("CHT,"+intPlayer+",landed on "+strLocation);
     if(intNextLocation == 30){
-      this.goToDetention(ssm, intPlayer); 
+      this.goToDetention(ssm, intPlayer);
     }else if(intNextLocation - intCurrentLocation < 0){
       if(this.blnDetention == false){
         //Pass Go, collect 200 marks
@@ -166,15 +166,15 @@ public class player{
    */
   public void endTurn(SuperSocketMaster ssm, int intPlayer){
     if(this.intMarks <= 0){
-      
+
       //delete game account
       ssm.sendText("CHT,"+intPlayer+",is bankrupt");
       this.intPlayer = 0;
       this.sendPlayerInfo(ssm);
     }else{
-      ssm.sendText("CHT,"+intPlayer+",ended the turn");  
+      ssm.sendText("CHT,"+intPlayer+",ended the turn");
     }
-    ssm.sendText("END,"+intPlayer);  
+    ssm.sendText("END,"+intPlayer);
   }
   /**
    * Sets the selected character as the player's chess piece on the board
@@ -227,7 +227,7 @@ public class player{
     String strLine = "";
     String strLin[];
     try{
-      thefile = new BufferedReader(new FileReader("playerPropInfo.csv"));
+      thefile = new BufferedReader(new FileReader("config/playerPropInfo.csv"));
     }catch(FileNotFoundException e){
     }
     int intCount = 0;
@@ -243,7 +243,7 @@ public class player{
     }
     thefile.close();
   }
-  
+
   //Utility method
   public static String convertStrLocation(int intNextLocation){
     String strLocation = "";

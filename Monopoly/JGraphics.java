@@ -67,12 +67,12 @@ public class JGraphics extends JPanel{
   boolean blntradeforreal;
   BufferedImage imagebuyhotel;
   BufferedImage imagebuyhouse;
-  
-  // methods 
+
+  // methods
   public void paintComponent(Graphics g){
     Graphics2D graphic = (Graphics2D)g;
     graphic.drawImage(bcg,0,0,null);
-    
+
     if(intran1==1){
       graphic.drawImage(d1,900,280,null);
     }else if(intran1==2){
@@ -102,43 +102,43 @@ public class JGraphics extends JPanel{
     if(blndetention==true){
       graphic.drawImage(deten,0,0,null);
     }
-    
-    
-    
+
+
+
     strline = new String[19];
     strmap = new String[40][16];
-    
+
     try{
-      themap  = new BufferedReader (new FileReader("map.csv"));
+      themap  = new BufferedReader (new FileReader("config/map.csv"));
     }catch(IOException e){
     }
-    
+
     for(intcount =0; intcount<40;intcount++){
       try{
         strload = themap.readLine();
       }catch(IOException e){
       }
       strline = strload.split(",");
-      
+
       for(intcount2=0;intcount2<16;intcount2++){
         try{
           strmap[intcount][intcount2]=strline[intcount2];
         }catch(Exception e){
-        }          
+        }
       }
-      
+
     }
-    
-    
+
+
     for(intcount=0;intcount<40;intcount++){
       try{
         load[intcount]=ImageIO.read(getClass().getResource(strmap[intcount][1]));
       }catch(IOException e){
       }
-      
+
     }
-    
-    
+
+
     for(intcount=0;intcount<40;intcount++){
       if(intcount>0&&intcount<10){
         graphic.drawImage(load[intcount],630-intcount*59,630,null);
@@ -163,33 +163,33 @@ public class JGraphics extends JPanel{
       }
     }
     if(blnbuyhotel){
-      
+
       try{
-        buy = ImageIO.read(getClass().getResource(intlocation+".png")); 
+        buy = ImageIO.read(getClass().getResource("images/"+intlocation+".png"));
       }catch(IOException e){
       }
       graphic.drawImage(buy,0,0,null);
       graphic.drawImage(imagebuyhotel,0,0,null);
-      
-      
+
+
     }
     if(blnbuyhouse){
-      
-      
+
+
       try{
-        buy = ImageIO.read(getClass().getResource(intlocation+".png")); 
-        imagebuyhouse = ImageIO.read(getClass().getResource("addhouse.png"));
+        buy = ImageIO.read(getClass().getResource("images/"+intlocation+".png"));
+        imagebuyhouse = ImageIO.read(getClass().getResource("images/addhouse.png"));
       }catch(IOException e){
       }
       graphic.drawImage(buy,0,0,null);
       graphic.drawImage(imagebuyhouse,0,0,null);
-      
-      
+
+
     }
     if(blnbuy){
       if(strmap[intlocation][0].equals("Prp") || strmap[intlocation][0].equals("Pub") || strmap[intlocation][0].equals("Utl")){
         try{
-          buy = ImageIO.read(getClass().getResource(intlocation+".png")); 
+          buy = ImageIO.read(getClass().getResource("images/"+intlocation+".png"));
         }catch(IOException e){
         }
         graphic.drawImage(buy,0,0,null);
@@ -204,18 +204,18 @@ public class JGraphics extends JPanel{
     if(cccstart){
       graphic.drawImage(ccc,0,0,null);
     }
-    
-    if(start1){ 
+
+    if(start1){
       if(intxr >50 && intyr == 630 && (int1x-intxr) +(intyr-int1y)< intmoves){
         intxr = intxr-20;
         graphic.drawImage(icon1,intxr,intyr,null);
       }else if(intxr==50 && intyr>50 && (int1x-intxr)+ (int1y-intyr) < intmoves){
         intyr = intyr-20;
         graphic.drawImage(icon1,intxr,intyr,null);
-      }else if(intxr<630 && intyr==50 &&  (int1y-intyr)+(intxr-int1x) < intmoves){       
+      }else if(intxr<630 && intyr==50 &&  (int1y-intyr)+(intxr-int1x) < intmoves){
         intxr = intxr+20;
         graphic.drawImage(icon1,intxr,intyr,null);
-      }else if(intxr==630 && intyr<630 &&  (intyr-int1y)+(intxr-int1x) < intmoves){       
+      }else if(intxr==630 && intyr<630 &&  (intyr-int1y)+(intxr-int1x) < intmoves){
         intyr = intyr+20;
         graphic.drawImage(icon1,intxr,intyr,null);
       }
@@ -223,21 +223,21 @@ public class JGraphics extends JPanel{
         int1x = intxr;
         int1y = intyr;
         start1 = false;
-      }         
+      }
     }
-    if(start2){     
-      
+    if(start2){
+
       if(intxr >50 && intyr == 630 && (int2x-intxr) +(intyr-int2y)< intmoves){
-        
+
         intxr = intxr-20;
         graphic.drawImage(icon2,intxr,intyr,null);
       }else if(intxr==50 && intyr>50 && (int2x-intxr)+ (int2y-intyr) < intmoves){
         intyr = intyr-20;
         graphic.drawImage(icon2,intxr,intyr,null);
-      }else if(intxr<630 && intyr==50 &&  (int2y-intyr)+(intxr-int2x) < intmoves){     
+      }else if(intxr<630 && intyr==50 &&  (int2y-intyr)+(intxr-int2x) < intmoves){
         intxr = intxr+20;
         graphic.drawImage(icon2,intxr,intyr,null);
-      }else if(intxr==630 && intyr<630 &&  (intyr-int2y)+(intxr-int2x) < intmoves){       
+      }else if(intxr==630 && intyr<630 &&  (intyr-int2y)+(intxr-int2x) < intmoves){
         intyr = intyr+20;
         graphic.drawImage(icon2,intxr,intyr,null);
       }
@@ -245,8 +245,8 @@ public class JGraphics extends JPanel{
         int2x = intxr;
         int2y = intyr;
         start2 = false;
-      }    
-      
+      }
+
     }
     if(start3){
       if(intxr >50 && intyr == 630 && (int3x-intxr) +(intyr-int3y)< intmoves){
@@ -255,10 +255,10 @@ public class JGraphics extends JPanel{
       }else if(intxr==50 && intyr>50 && (int3x-intxr)+ (int3y-intyr) < intmoves){
         intyr = intyr-20;
         graphic.drawImage(icon3,intxr,intyr,null);
-      }else if(intxr<630 && intyr==50 &&  (int3y-intyr)+(intxr-int3x) < intmoves){    
+      }else if(intxr<630 && intyr==50 &&  (int3y-intyr)+(intxr-int3x) < intmoves){
         intxr = intxr+20;
         graphic.drawImage(icon3,intxr,intyr,null);
-      }else if(intxr==630 && intyr<630 &&  (intyr-int3y)+(intxr-int3x) < intmoves){        
+      }else if(intxr==630 && intyr<630 &&  (intyr-int3y)+(intxr-int3x) < intmoves){
         intyr = intyr+20;
         graphic.drawImage(icon3,intxr,intyr,null);
       }
@@ -266,8 +266,8 @@ public class JGraphics extends JPanel{
         int3x = intxr;
         int3y = intyr;
         start3 = false;
-      }    
-      
+      }
+
     }
     if(start4){
       if(intxr >50 && intyr == 630 && (int4x-intxr) +(intyr-int4y)< intmoves){
@@ -279,7 +279,7 @@ public class JGraphics extends JPanel{
       }else if(intxr<630 && intyr==50 &&  (int4y-intyr)+(intxr-int4x) < intmoves){
         intxr = intxr+20;
         graphic.drawImage(icon4,intxr,intyr,null);
-      }else if(intxr==630 && intyr<630 &&  (intyr-int4y)+(intxr-int4x) < intmoves){        
+      }else if(intxr==630 && intyr<630 &&  (intyr-int4y)+(intxr-int4x) < intmoves){
         intyr = intyr+20;
         graphic.drawImage(icon4,intxr,intyr,null);
       }
@@ -287,37 +287,37 @@ public class JGraphics extends JPanel{
         int4x = intxr;
         int4y = intyr;
         start4 = false;
-      }    
-      
+      }
+
     }
     graphic.drawImage(icon1,int1x,int1y,null);
     graphic.drawImage(icon2,int2x,int2y,null);
     graphic.drawImage(icon3,int3x,int3y,null);
     graphic.drawImage(icon4,int4x,int4y,null);
   }
-  
-  // constructor 
+
+  // constructor
   public JGraphics(){
     super();
     try{
-      bcg = ImageIO.read(getClass().getResource("bcg.png"));  
-      d1 = ImageIO.read(getClass().getResource("d1.png"));    
-      d2 = ImageIO.read(getClass().getResource("d2.png"));    
-      d3 = ImageIO.read(getClass().getResource("d3.png"));    
-      d4 = ImageIO.read(getClass().getResource("d4.png"));    
-      d5 = ImageIO.read(getClass().getResource("d5.png"));    
-      d6 = ImageIO.read(getClass().getResource("d6.png"));    
-      deten = ImageIO.read(getClass().getResource("deten.png")); 
-      icon1= ImageIO.read(getClass().getResource("pencil.png")); 
-      icon2= ImageIO.read(getClass().getResource("glue.png")); 
-      icon3= ImageIO.read(getClass().getResource("toilet.png")); 
-      icon4= ImageIO.read(getClass().getResource("eraser.png"));
-      
-      ccc = ImageIO.read(getClass().getResource("ccc.png"));
-      tradechoose = ImageIO.read(getClass().getResource("tradechoose.png"));
-      tradebcg = ImageIO.read(getClass().getResource("tradebcg.png"));
-      imagebuyhotel = ImageIO.read(getClass().getResource("addhotel.png"));
-      imagebuyhouse = ImageIO.read(getClass().getResource("addhouse.png"));
+      bcg = ImageIO.read(getClass().getResource("images/bcg.png"));
+      d1 = ImageIO.read(getClass().getResource("images/d1.png"));
+      d2 = ImageIO.read(getClass().getResource("images/d2.png"));
+      d3 = ImageIO.read(getClass().getResource("images/d3.png"));
+      d4 = ImageIO.read(getClass().getResource("images/d4.png"));
+      d5 = ImageIO.read(getClass().getResource("images/d5.png"));
+      d6 = ImageIO.read(getClass().getResource("images/d6.png"));
+      deten = ImageIO.read(getClass().getResource("images/deten.png"));
+      icon1= ImageIO.read(getClass().getResource("images/pencil.png"));
+      icon2= ImageIO.read(getClass().getResource("images/glue.png"));
+      icon3= ImageIO.read(getClass().getResource("images/toilet.png"));
+      icon4= ImageIO.read(getClass().getResource("images/eraser.png"));
+
+      ccc = ImageIO.read(getClass().getResource("images/ccc.png"));
+      tradechoose = ImageIO.read(getClass().getResource("images/tradechoose.png"));
+      tradebcg = ImageIO.read(getClass().getResource("images/tradebcg.png"));
+      imagebuyhotel = ImageIO.read(getClass().getResource("images/addhotel.png"));
+      imagebuyhouse = ImageIO.read(getClass().getResource("images/addhouse.png"));
     }
     catch(IOException e){
     }

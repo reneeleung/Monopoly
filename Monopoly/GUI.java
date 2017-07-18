@@ -381,7 +381,7 @@ public class GUI implements ActionListener{
         bankrupt.setPreferredSize(new Dimension(1280,720));
         theframe.setContentPane(bankrupt);
         theframe.pack();
-
+        ssm.sendText("BKT,"+intMyNumber);
       }
 
       // if win the game
@@ -413,6 +413,8 @@ public class GUI implements ActionListener{
       buttonroll.setEnabled(false);
       buttontrade.setEnabled(false);
       buttonend.setEnabled(false);
+      thepanel.blntradechoose= false;
+      thepanel.blntradeforreal= false;
     }
     if(evt.getSource() == buttonbuy){
       int intPayment;
@@ -610,6 +612,16 @@ public class GUI implements ActionListener{
       if(strCommand[0].equals("CHT")){
         textReceived.append(strCommand[1]+": "+strCommand[2]+"\n");
         textReceived.setCaretPosition(textReceived.getDocument().getLength());
+      }else if(strCommand[0].equals("BKT")){
+        if (Integer.parseInt(strCommand[1]) != intMyNumber){
+          strplayerinfo[Integer.parseInt(strCommand[1]) - 1][0] = null;
+          allplayerdie = true;
+          for (int i = 0; i < 4; i++){
+            if (i != intMyNumber - 1 && strplayerinfo[i][0] != null){
+              allplayerdie = false;
+            }
+          }
+        }
       }else if(strCommand[0].equals("TRD")){
         if(Integer.parseInt(strCommand[1]) == intMyNumber || Integer.parseInt(strCommand[2]) == intMyNumber){
           //load trade screen
@@ -696,15 +708,14 @@ public class GUI implements ActionListener{
           buttonroll.setEnabled(false);
           buttontrade.setEnabled(false);
           buttonend.setEnabled(false);
-        } else {
-          if(tradescroll != null && tradetable != null && locationnum != null && marknum != null){
-            tradescroll.setVisible(false);
-            tradetable.setVisible(false);
-            locationnum.setVisible(false);
-            marknum.setVisible(false);
-            thepanel.blntradeforreal= false;
-          }
-
+        }
+        if(tradescroll != null && tradetable != null && locationnum != null && marknum != null){
+          tradescroll.setVisible(false);
+          tradetable.setVisible(false);
+          locationnum.setVisible(false);
+          marknum.setVisible(false);
+          thepanel.blntradechoose= false;
+          thepanel.blntradeforreal= false;
         }
         if(Integer.parseInt(strCommand[1]) == 4){
           strCommand[1] = "0";
@@ -739,7 +750,8 @@ public class GUI implements ActionListener{
                 ssm.sendText("CHT,"+intMyNumber+",is in jail and skips a turn");
                 if(intDetentionCount == 3){
                   intDetentionCount = 0;
-                  me.blnDetention = true;
+                  me.blnDetention = false;
+                  thepanel.blndetention = false;
                 }
               }
             }
@@ -756,7 +768,8 @@ public class GUI implements ActionListener{
                 ssm.sendText("CHT,"+intMyNumber+",is in jail and skips a turn");
                 if(intDetentionCount == 3){
                   intDetentionCount = 0;
-                  me.blnDetention = true;
+                  me.blnDetention = false;
+                  thepanel.blndetention = false;
                 }
               }
             }
@@ -773,7 +786,8 @@ public class GUI implements ActionListener{
                 ssm.sendText("CHT,"+intMyNumber+",is in jail and skips a turn");
                 if(intDetentionCount == 3){
                   intDetentionCount = 0;
-                  me.blnDetention = true;
+                  me.blnDetention = false;
+                  thepanel.blndetention = false;
                 }
               }
             }
@@ -823,7 +837,7 @@ public class GUI implements ActionListener{
       }else if(strCommand[0].equals("SHT")){
 
       }else if(strCommand[0].equals("PLI")){
-        int intPlayerIcon = 0;
+        int intPlayerIcon = 1;
         if(strCommand[1].equals("pencil")){
           intPlayerIcon = 1;
         }else if(strCommand[1].equals("glue")){
@@ -932,7 +946,7 @@ public class GUI implements ActionListener{
       strline = new String[19];
       strmap = new String[40][16];
       try{
-        themap  = new BufferedReader (new FileReader("map.csv"));
+        themap  = new BufferedReader (new FileReader("config/map.csv"));
       }catch(IOException e){
       }
       intloadcount = 0;
@@ -1427,6 +1441,7 @@ public class GUI implements ActionListener{
               //build house offer
               //construct buttonbuyhotel
               //construct buttondecline
+              thepanel.blnbuyhouse = true;
               thepanel.intlocation = me.intCurrentLocation;
               thepanel.blnbuyhouse = true;
               buttonbuyhouse = new JButton();
@@ -1590,7 +1605,7 @@ public class GUI implements ActionListener{
     player4.addActionListener(this);
 
     try{
-      theccc = new BufferedReader (new FileReader("ccc.csv"));
+      theccc = new BufferedReader (new FileReader("config/ccc.csv"));
     }catch(IOException e){
     }
     strccc = new String[7][4];

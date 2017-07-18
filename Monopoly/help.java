@@ -12,11 +12,11 @@ public class help extends JPanel{
   BufferedImage h3 = null;
   boolean bln2;
     boolean bln3;
-  // methods 
+  // methods
   public void paintComponent(Graphics g){
     Graphics2D graphic = (Graphics2D)g;
-    
-    
+
+
     if(bln2==true){
       graphic.drawImage(h2,0,0,null);
 
@@ -28,18 +28,18 @@ public class help extends JPanel{
     }else{
       graphic.drawImage(bcg,0,0,null);
     }
-    
+
   }
-  
-  // constructor 
+
+  // constructor
   public help(){
     super();
     try{
-      bcg = ImageIO.read(getClass().getResource("help1.png"));  
-      h2 = ImageIO.read(getClass().getResource("help2.png"));  
-      h3 = ImageIO.read(getClass().getResource("help3.png"));  
-      
-      
+      bcg = ImageIO.read(getClass().getResource("images/help1.png"));
+      h2 = ImageIO.read(getClass().getResource("images/help2.png"));
+      h3 = ImageIO.read(getClass().getResource("images/help3.png"));  
+
+
     }
     catch(IOException e){
     }
